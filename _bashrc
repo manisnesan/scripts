@@ -1,0 +1,71 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export PATH=/home/msivanes/Courses/Coursera/scala/sbt/bin:$PATH
+export PATH=/opt/sml/bin:$PATH
+export JBOSS=/home/msivanes/Work/EAP-6.1.1/jboss-eap-6.1
+export COURSE=/home/msivanes/Courses/Coursera/ProgLang
+
+# User specific aliases and functions
+#Git specific aliases
+alias ga='git add'
+alias gpu='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpl='git pull --rebase'
+alias gcl='git clone'
+#Maven specific aliases
+alias mci='mvn -e -U clean install -DskipTests -DskipRpm -T 1C' # clean and build skipping the rpms with 1 thread per cpu core
+alias mcit='mvn -e -U clean install -Pintegration-tests' #Build
+alias mp='mvn package'
+alias mt='mvn test -T 1C' #To run all the tests with 1 thread per cpu core
+alias mst='mvn test -Dtest=' #To run a single test Eg : mvn test -Dtest=KCSClient
+alias mcik='mvn -e -U clean install -Dmaven.test.skip=true' # clean and build without running the test
+alias mit='mvn clean test-compile failsafe:integration-test -T 1C' #clean and run only integration tests without running unit tests with 1 thread per cpu core.
+alias mf='mvn findbugs:findbugs -Dfindbugs.threshold=High -Dfindbugs.includeTests=false
+' #Run maven findbugs
+alias mfgui='mvn findbugs:gui'
+
+
+
+#Custom Python modules to be picked by Jython
+alias jython='jython -Dpython.path=$PYTHONPATH'
+
+#Vim alias
+#alias vim='gvim -v'
+
+#alias to run t, a command line to do list manager.
+alias t='python ~/Setups/t/t.py --task-dir ~/tasks --list tasks'
+
+#Increase the history size
+export HISTSIZE=10000
+export HISTCONTROL=erasedups
+shopt -s histappend
+
+#Aliases specific to sbt
+alias sbt='sbt -J-Xms64m -J-Xmx128m'
+
+#Alias for curl
+alias CURL='curl --silent --insecure --show-error'
+
+#Create backup and swap directories to be used by vim
+mkdir -p /tmp/vimbackup
+mkdir -p /tmp/vimswap
+
+#Source the liquidprompt
+source /home/msivanes/Setups/liquidprompt/liquidprompt
+
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
